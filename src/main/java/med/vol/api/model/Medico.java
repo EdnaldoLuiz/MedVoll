@@ -9,10 +9,13 @@ import jakarta.persistence.Id;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import med.vol.api.DTO.DadosCadastroMedicos;
+import med.vol.api.controller.DadosAtualizacaoMedico;
 
 @Table(name = "medicos")
 @Entity(name = "Medico")
@@ -29,6 +32,7 @@ public class Medico {
     private String email; 
     private String crm; 
     private String telefone;
+    private Boolean ativo;
 
     @Enumerated(EnumType.STRING)
     private Especialidade especialidade; 
@@ -37,11 +41,28 @@ public class Medico {
     private Endereco endereco;
 
     public Medico(DadosCadastroMedicos dados) {
+        this.ativo = true;
         this.nome = dados.nome();
         this.email = dados.email();
         this.crm = dados.crm();
         this.telefone = dados.telefone();
         this.especialidade = dados.especialidade();
         this.endereco = new Endereco(dados.endereco());
+    }
+
+    public void atualizarInformacoes(@Valid DadosAtualizacaoMedico dados) {
+        if (dados.nome() != null) {
+            this.nome = dados.nome();
+        }
+        if (dados.telefone() != null) {
+            this.telefone = dados.telefone();
+        }
+        if (dados.endereco() != null) {
+            this.endereco.atualizarInformacoes(dados.endereco());
+        }
+    }
+
+    public void desativar() {
+        this.ativo = false;
     }
 }

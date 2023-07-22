@@ -1,4 +1,4 @@
-package med.vol.api.model;
+package med.vol.api.DTO;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
