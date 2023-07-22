@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
+import med.vol.api.DTO.DadosAtualizacaoMedico;
 import med.vol.api.DTO.DadosCadastroMedicos;
 import med.vol.api.DTO.DadosListagemMedico;
 import med.vol.api.model.Medico;
