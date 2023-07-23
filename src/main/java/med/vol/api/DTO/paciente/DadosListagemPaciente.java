@@ -1,4 +1,4 @@
-package med.vol.api.DTO;
+package med.vol.api.DTO.paciente;
 
 import med.vol.api.model.Paciente;
 
