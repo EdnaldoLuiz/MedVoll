@@ -1,4 +1,4 @@
-package med.vol.api.DTO.paciente;
+package med.vol.api.domain.paciente;
 
 import med.vol.api.model.Endereco;
 import med.vol.api.model.Paciente;

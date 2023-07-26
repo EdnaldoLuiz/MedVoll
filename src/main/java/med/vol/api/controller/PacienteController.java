@@ -17,10 +17,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
-import med.vol.api.DTO.paciente.DadosAtualizacaoPaciente;
-import med.vol.api.DTO.paciente.DadosCadastroPacientes;
-import med.vol.api.DTO.paciente.DadosDetalhamentoPaciente;
-import med.vol.api.DTO.paciente.DadosListagemPaciente;
+import med.vol.api.domain.paciente.*;
 import med.vol.api.model.Paciente;
 import med.vol.api.repository.PacienteRepository;
 

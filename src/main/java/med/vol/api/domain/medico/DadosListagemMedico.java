@@ -1,4 +1,4 @@
-package med.vol.api.DTO.medico;
+package med.vol.api.domain.medico;
 
 import med.vol.api.model.Especialidade;
 import med.vol.api.model.Medico;

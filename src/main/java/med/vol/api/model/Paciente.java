@@ -11,8 +11,8 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import med.vol.api.DTO.paciente.DadosAtualizacaoPaciente;
-import med.vol.api.DTO.paciente.DadosCadastroPacientes;
+import med.vol.api.domain.paciente.DadosAtualizacaoPaciente;
+import med.vol.api.domain.paciente.DadosCadastroPacientes;
 
 @Getter
 @EqualsAndHashCode(of = "id")
