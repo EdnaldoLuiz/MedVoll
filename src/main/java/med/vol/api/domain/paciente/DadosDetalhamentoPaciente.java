@@ -1,7 +1,6 @@
 package med.vol.api.domain.paciente;
 
-import med.vol.api.model.Endereco;
-import med.vol.api.model.Paciente;
+import med.vol.api.domain.endereco.Endereco;
 
 public record DadosDetalhamentoPaciente(String nome, String email, String cpf, String telefone, Endereco endereco) {
 

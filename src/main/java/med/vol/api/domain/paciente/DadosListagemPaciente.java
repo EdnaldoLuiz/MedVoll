@@ -1,7 +1,5 @@
 package med.vol.api.domain.paciente;
 
-import med.vol.api.model.Paciente;
-
 public record DadosListagemPaciente(
 
     String nome,

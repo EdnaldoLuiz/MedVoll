@@ -18,8 +18,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import med.vol.api.domain.paciente.*;
-import med.vol.api.model.Paciente;
-import med.vol.api.repository.PacienteRepository;
 
 @RestController
 @RequestMapping("pacientes")
@@ -30,7 +28,7 @@ public class PacienteController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity cadastrar(@RequestBody @Valid DadosCadastroPacientes dados, UriComponentsBuilder builder) {
+    public ResponseEntity<DadosDetalhamentoPaciente> cadastrar(@RequestBody @Valid DadosCadastroPacientes dados, UriComponentsBuilder builder) {
         var paciente = new Paciente(dados);
         repository.save(paciente);
         var uri = builder.path("/pacientes/{id}").buildAndExpand(paciente.getId()).toUri();
@@ -44,14 +42,14 @@ public class PacienteController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity a(@PathVariable Long id) {
+    public ResponseEntity<DadosDetalhamentoPaciente> a(@PathVariable Long id) {
         var paciente = repository.getReferenceById(id);
         return ResponseEntity.ok(new DadosDetalhamentoPaciente(paciente));
     }
 
     @PutMapping
     @Transactional
-    public ResponseEntity atualizar(@RequestBody @Valid DadosAtualizacaoPaciente dados) {
+    public ResponseEntity<DadosDetalhamentoPaciente> atualizar(@RequestBody @Valid DadosAtualizacaoPaciente dados) {
         var paciente = repository.getReferenceById(dados.id());
         paciente.atualizarInformacoes(dados);
         return ResponseEntity.ok(new DadosDetalhamentoPaciente(paciente));
@@ -59,7 +57,7 @@ public class PacienteController {
     
     @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity excluir(@PathVariable Long id) {
+    public ResponseEntity<Void> excluir(@PathVariable Long id) {
         var paciente = repository.getReferenceById(id);
         paciente.desativar();
         return ResponseEntity.noContent().build();

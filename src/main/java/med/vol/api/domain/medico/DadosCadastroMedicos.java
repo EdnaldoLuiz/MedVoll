@@ -6,7 +6,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import med.vol.api.domain.endereco.DadosEndereco;
-import med.vol.api.model.Especialidade;
 
 public record DadosCadastroMedicos( 
     @NotBlank(message = "{nome.obrigatorio}")

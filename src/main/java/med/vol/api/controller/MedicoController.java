@@ -19,9 +19,6 @@ import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import med.vol.api.domain.medico.*;
 
-import med.vol.api.model.Medico;
-import med.vol.api.repository.MedicoRepository;
-
 @RestController
 @RequestMapping("medicos")
 public class MedicoController {
@@ -31,7 +28,7 @@ public class MedicoController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity cadastrar(@RequestBody @Valid DadosCadastroMedicos dados, UriComponentsBuilder builder) {
+    public ResponseEntity<DadosDetalhamentoMedico> cadastrar(@RequestBody @Valid DadosCadastroMedicos dados, UriComponentsBuilder builder) {
         var medico = new Medico(dados);
         repository.save(medico);
         var uri = builder.path("/medicos/{id}").buildAndExpand(medico.getId()).toUri();
@@ -45,14 +42,14 @@ public class MedicoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity detalhar(@PathVariable Long id) {
+    public ResponseEntity<DadosDetalhamentoMedico> detalhar(@PathVariable Long id) {
         var medico = repository.getReferenceById(id);
         return ResponseEntity.ok(new DadosDetalhamentoMedico(medico));
     }
 
     @PutMapping
     @Transactional
-    public ResponseEntity atualizar(@RequestBody @Valid DadosAtualizacaoMedico dados) {
+    public ResponseEntity<DadosDetalhamentoMedico> atualizar(@RequestBody @Valid DadosAtualizacaoMedico dados) {
         var medico = repository.getReferenceById(dados.id());
         medico.atualizarInformacoes(dados);
         return ResponseEntity.ok(new DadosDetalhamentoMedico(medico));
@@ -60,7 +57,7 @@ public class MedicoController {
 
     @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity desativar(@PathVariable Long id) {
+    public ResponseEntity<Void> desativar(@PathVariable Long id) {
         var medico = repository.getReferenceById(id);
         medico.desativar();
         return ResponseEntity.noContent().build();
