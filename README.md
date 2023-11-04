@@ -1,3 +1,70 @@
+
+
+```mermaid
+classDiagram
+direction LR
+  class Medico {
+    + id: Long
+    + nome: String
+    + email: String
+    + crm: String
+    + telefone: String
+    + ativo: Boolean
+    + especialidade: Especialidade
+    + endereco: Endereco
+  }
+
+  class Paciente {
+    + id: Long
+    + nome: String
+    + email: String
+    + cpf: String
+    + telefone: String
+    + ativo: Boolean
+    + endereco: Endereco
+  }
+
+  class Endereco {
+    + logradouro: String
+    + bairro: String
+    + cep: String
+    + cidade: String
+    + uf: String
+    + complemento: String
+    + numero: String
+  }
+
+  class Consulta {
+    + id: Long
+    + medico: Medico
+    + paciente: Paciente
+    + data: LocalDateTime
+    + motivoCancelamento: MotivoCancelamento
+  }
+
+  class Especialidade {
+    <<enumeration>>
+    ORTOPEDIA
+    CARDIOLOGIA
+    GINECOLOGIA
+    DERMATOLOGIA
+  }
+
+  class MotivoCancelamento {
+    <<enumeration>>
+    PACIENTE_DESISTIU
+    MEDICO_CANCELOU
+    OUTROS
+  }
+
+  Medico --|> Endereco
+  Paciente --|> Endereco
+  Consulta --> Medico
+  Consulta --> Paciente
+
+```
+
+
 <h1 align=center>MedVoll</h1>
 
 <h2>Descrição</h2>
